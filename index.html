@@ -43,9 +43,117 @@
 			border-radius:50px;
 			box-shadow: 10px 10px 5px #000000;
 		}
+		.loader-wrapper {
+		  position: fixed;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  width: 100%;
+		  height: 100%;
+		  top: 0;
+		  left: 0;
+		  background-color: #e5e5e5;
+		  z-index: 9999;
+		}
+		svg {
+		  position: fixed;
+		  top: 50%;
+		  left: 50%;
+		  -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(1);
+				  transform: translate(-50%, -50%) rotate(45deg) scale(1);
+		}
+
+		.stroke-still {
+		  stroke: #232323;
+		}
+
+		.stroke-animation {
+		  -webkit-animation: stroke-spacing 1.2s ease-in, stroke-color 4.8s linear;
+				  animation: stroke-spacing 1.2s ease-in, stroke-color 4.8s linear;
+		  -webkit-animation-iteration-count: infinite;
+				  animation-iteration-count: infinite;
+		  -webkit-animation-delay: 0;
+				  animation-delay: 0;
+		  -webkit-animation-direction: normal;
+				  animation-direction: normal;
+		  -webkit-animation-fill-mode: forwards;
+				  animation-fill-mode: forwards;
+		  -webkit-animation-play-state: running;
+				  animation-play-state: running;
+		  -webkit-transform-origin: center center;
+				  transform-origin: center center;
+		}
+
+		@-webkit-keyframes stroke-spacing {
+		  0% {
+			stroke-dasharray: 0 200;
+		  }
+		  45% {
+			stroke-dashoffset: 0;
+			stroke-dasharray: 200 200;
+		  }
+		  90% {
+			stroke-dashoffset: -200;
+			stroke-dasharray: 200 200;
+		  }
+		  100% {
+			stroke-dashoffset: -200;
+			stroke-dasharray: 200 200;
+		  }
+		}
+
+		@keyframes stroke-spacing {
+		  0% {
+			stroke-dasharray: 0 200;
+		  }
+		  45% {
+			stroke-dashoffset: 0;
+			stroke-dasharray: 200 200;
+		  }
+		  90% {
+			stroke-dashoffset: -200;
+			stroke-dasharray: 200 200;
+		  }
+		  100% {
+			stroke-dashoffset: -200;
+			stroke-dasharray: 200 200;
+		  }
+		}
+
+		@-webkit-keyframes stroke-color {
+		  0%  { stroke: #3498DB; }
+		  24% { stroke: #643232; }
+		  25% { stroke: #327864; }
+		  49% { stroke: #327864; }
+		  50% { stroke: #32326e; }
+		  74% { stroke: #32326e; }
+		  75% { stroke: #78325a; }
+		  99% { stroke: #78325a; }
+		}
+
+		@keyframes stroke-color {
+		  0%  { stroke: #3498DB; }
+		  24% { stroke: #643232; }
+		  25% { stroke: #327864; }
+		  49% { stroke: #327864; }
+		  50% { stroke: #32326e; }
+		  74% { stroke: #32326e; }
+		  75% { stroke: #78325a; }
+		  99% { stroke: #78325a; }
+		}
+
 	</style>
   </head>
   <body>
+  
+	<div class="loader-wrapper">
+		<svg width="200" height="200" viewBox="0 0 100 100">
+			<polyline class="line-cornered stroke-still" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+			<polyline class="line-cornered stroke-still" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+			<polyline class="line-cornered stroke-animation" points="0,0 100,0 100,100" stroke-width="10" fill="none"></polyline>
+			<polyline class="line-cornered stroke-animation" points="0,0 0,100 100,100" stroke-width="10" fill="none"></polyline>
+		</svg>
+	</div>
   
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-3">
 		<div class="container-fluid">
@@ -76,6 +184,14 @@
 	
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	<script>
+		$(window).on("load",function(){
+			$(".loader-wrapper").delay(70).fadeOut("slow");
+		});
+	</script>
+	
 	<script>
 		AOS.init({
 		duration:1000,
@@ -88,7 +204,7 @@
 			<div class="mx-5 mt-1">
 				<h2 data-aos="fade-right" data-aos-delay="300">Olá,<br> Eu sou Gabriel!<br></h2> 
 				<p class="lead" data-aos="fade-up" data-aos-delay="800">Estudante Eng. Informação - UFABC<img src="https://pbs.twimg.com/profile_images/1063331297/ufabc.jpg" class="rounded-circle bg-white mx-2" width="30" height="30"></img></p>
-				<div class="text-center row my-3" data-aos="zoom-in" data-aos-delay="1000">
+				<div class="text-center row my-4" data-aos="zoom-in" data-aos-delay="1000">
 					 <p class="lead fw-bold" data-aos="fade-up" data-aos-delay="800">Contatos</p>
 					 <div class="col">
 						<a target="_blank" class="blue-hover text-white" href="https://github.com/gabrielsouza-oss/"><i class="fa fa-github fa-2x"></i></a>
